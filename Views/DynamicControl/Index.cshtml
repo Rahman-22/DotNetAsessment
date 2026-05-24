@@ -1,0 +1,54 @@
+@model DotNetAsessment.Models.DynamicControlViewModel
+
+   <div class="container mt-4">
+       <h2>Dynamic Control Generator</h2>
+
+       <form asp-action="Index" method="post" class="card p-4 shadow-sm bg-light">
+           <div class="mb-3">
+               <label class="form-label">Select Control Type:</label>
+               <select asp-for="SelectedControl" class="form-select" required>
+                   <option value="">Select a control...</option>
+                   <option value="Textbox">Textbox</option>
+                   <option value="Checkbox">Checkbox</option>
+                   <option value="Button">Button</option>
+               </select>
+           </div>
+
+           <div class="mb-3">
+               <label class="form-label">Number of controls to generate:</label>
+               <input asp-for="NumberOfControls" type="number" min="1" class="form-control" required />
+           </div>
+
+           <button type="submit" class="btn btn-primary">Generate</button>
+       </form>
+
+       <hr />
+
+       @if (Model != null && Model.NumberOfControls > 0 && !string.IsNullOrEmpty(Model.SelectedControl))
+       {
+           <div class="card p-4 shadow-sm border-success">
+               <h3 class="text-success mb-3">Generated @(Model.SelectedControl)s:</h3>
+               
+               @for (int i = 0; i < Model.NumberOfControls; i++)
+               {
+                   <div class="mb-3">
+                       @switch (Model.SelectedControl)
+                       {
+                           case "Textbox":
+                               <input type="text" class="form-control" placeholder="Generated Textbox @(i + 1)" />
+                               break;
+                           case "Checkbox":
+                               <div class="form-check">
+                                   <input type="checkbox" class="form-check-input" id="check_@i" />
+                                   <label class="form-check-label" for="check_@i">Generated Checkbox @(i + 1)</label>
+                               </div>
+                               break;
+                           case "Button":
+                               <button type="button" class="btn btn-secondary">Generated Button @(i + 1)</button>
+                               break;
+                       }
+                   </div>
+               }
+           </div>
+       }
+   </div>

@@ -1,0 +1,29 @@
+@model IEnumerable<DotNetAsessment.Models.Employee>
+
+<div class="container mt-4">
+    <h2>Filtered Employee List (Starts with A/G/V and Born in Q1)</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-gray">
+            <tr>
+                <th>Employee No</th>
+                <th>Employee Name</th>
+                <th>Birth Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="3" class="text-center">No employees match this criteria condition.</td>
+                </tr>
+            }
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@item.EmployeeNo</td>
+                    <td>@item.EmployeeName</td>
+                    <td>@item.BirthDate.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
