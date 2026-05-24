@@ -6,7 +6,7 @@
 ## Prerequisites
 To run this project locally, you will need:
 * [.NET SDK](https://dotnet.microsoft.com/download) (Built using .NET 10.0)
-* No external database server is required. This project uses **Entity Framework Core with SQLite** for portability and ease of testing.
+* No external database server is required. This project uses **Entity Framework Core with SQLite** for easy testing.
 
 ## How to Run the Project
 
